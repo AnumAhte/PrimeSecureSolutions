@@ -24,6 +24,7 @@ export function Media({
   priority = false,
   overlay = "none",
   blurDataURL,
+  previewClassName = "bg-center",
 }: {
   src?: string;
   alt?: string;
@@ -35,8 +36,19 @@ export function Media({
   sizes?: string;
   priority?: boolean;
   overlay?: "none" | "soft" | "strong";
-  /** Tiny inline preview so the slot is never empty while the photo downloads. */
+  /**
+   * Inline low-resolution preview, painted under the photo so the slot is
+   * never empty while it downloads.
+   *
+   * Deliberately not next/image's `placeholder="blur"`: that wraps the preview
+   * in an SVG gaussian blur heavy enough to erase every shape, so the moment
+   * the real photo arrived the right of the frame visibly resolved from a grey
+   * smudge into a person at a desk. Painting the preview as-is, at the same
+   * fit and focal point as the photo, makes the swap invisible.
+   */
   blurDataURL?: string;
+  /** Background-position utilities mirroring `imageClassName`'s object-position. */
+  previewClassName?: string;
 }) {
   const overlayClass =
     overlay === "strong"
@@ -47,6 +59,13 @@ export function Media({
 
   return (
     <div className={`overflow-hidden bg-navy-900 ${className}`}>
+      {src && blurDataURL && (
+        <div
+          aria-hidden="true"
+          className={`absolute inset-0 bg-cover bg-no-repeat ${previewClassName}`}
+          style={{ backgroundImage: `url("${blurDataURL}")` }}
+        />
+      )}
       {src ? (
         <Image
           src={src}
@@ -54,9 +73,6 @@ export function Media({
           fill
           sizes={sizes}
           priority={priority}
-          {...(blurDataURL
-            ? ({ placeholder: "blur", blurDataURL } as const)
-            : {})}
           className={`object-cover ${imageClassName}`}
         />
       ) : (

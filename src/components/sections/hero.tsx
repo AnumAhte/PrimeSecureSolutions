@@ -4,9 +4,9 @@ import { Icon } from "../ui/icon";
 import { Media } from "../ui/media";
 import { Container } from "../ui/primitives";
 
-/** 24px preview of the hero photo, inlined so the slot is never empty. */
+/** 160px preview of the hero photo, inlined so the slot is never empty. */
 const HERO_BLUR =
-  "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAKABgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIGAwT/xAAlEAABAwMDAwUAAAAAAAAAAAABAgMEAAURITFREmFxBhMUFTL/xAAWAQEBAQAAAAAAAAAAAAAAAAABAAL/xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAMAwEAAhEDEQA/AMbkn75DES2PMFtrVDeSk4570zdtmwpdvMlbRZaUG2wn9a86dqnbCopvUMpJB95AyPIq19QkpixykkH5A28GpgMuW73xEO4x20u9aDo6hIBxnbXntRT2JpuTEdMhCXSJCgC4OrGNt6KC03//2Q==";
+  "data:image/jpeg;base64,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";
 
 export function Hero() {
   return (
@@ -21,6 +21,7 @@ export function Hero() {
         sizes="100vw"
         priority
         blurDataURL={HERO_BLUR}
+        previewClassName="bg-[36%_center] lg:bg-center"
       />
       <div className="absolute inset-0 -z-10">
         {/* light cool cast, so the photo sits on the brand palette */}
