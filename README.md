@@ -78,6 +78,13 @@ so `hero-surveillance.jpg` reproduces the arrangement from three photographs:
 | Office and headset operator | Pexels 7709302 | blended in from the right behind a 260px alpha ramp |
 | Dome camera | Pexels 7364948 | cut out with a luminance mask, hung from the top edge |
 
+A depth-of-field falloff is baked into the JPEG: the dome camera and the
+camera feeds stay sharp, and everything from roughly 55% across is
+progressively blurred. That is deliberate — leaving it to a `backdrop-filter`
+on the panel meant the sharp face flashed through for a frame on every load.
+For the same reason the hero panel uses a solid tint rather than
+`backdrop-blur`.
+
 All three are **Pexels licence** — free for commercial use, no attribution
 required. The build script lives outside the repo; the finished JPEG is what
 ships.

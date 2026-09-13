@@ -65,7 +65,10 @@ export function Hero() {
 
         {/* Glass panel listing the four service pillars */}
         <Reveal delay={140}>
-          <ul className="flex flex-col gap-1.5 rounded-2xl border border-white/12 bg-navy-950/72 p-3 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-md sm:p-4">
+          {/* No backdrop-filter here: it paints a frame late, which flashed the
+              sharp photo through the panel on load. The photo behind it is
+              already soft, so a solid tint does the same job. */}
+          <ul className="flex flex-col gap-1.5 rounded-2xl border border-white/12 bg-navy-950/82 p-3 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.7)] sm:p-4">
             {hero.highlights.map((item) => (
               <li key={item.title}>
                 <div className="group flex items-center gap-3.5 rounded-xl px-3 py-3 transition-colors duration-200 hover:bg-white/[0.06]">
