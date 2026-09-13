@@ -1,26 +1,117 @@
 @import "tailwindcss";
 
+@theme {
+  /* ---- Brand palette (sampled from the approved design) ---- */
+  --color-navy-950: #050e1d;
+  --color-navy-900: #08172c;
+  --color-navy-850: #0a1c36;
+  --color-navy-800: #0e2344;
+  --color-navy-700: #143059;
+  --color-navy-600: #1b3f72;
+
+  --color-brand-700: #1450a8;
+  --color-brand-600: #1761c6;
+  --color-brand-500: #1c74e0;
+  --color-brand-400: #3b9bff;
+  --color-brand-300: #6bb5ff;
+  --color-brand-200: #a9d3ff;
+
+  --color-ice-50: #f6f9fd;
+  --color-ice-100: #eef4fb;
+  --color-ice-200: #dfe9f6;
+
+  --color-ink-900: #0b1b30;
+  --color-ink-700: #2a3f58;
+  --color-ink-500: #5a6e88;
+  --color-ink-400: #8095ae;
+
+  /* ---- Type ---- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, sans-serif;
+
+  /* ---- Motion ---- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand-500);
+  color: #fff;
+}
+
+/* Consistent focus ring for keyboard users across the whole site */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand-400);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 32px;
+    }
+  }
+
+  /* Faint grid used behind dark sections — replaces stock photography cleanly */
+  .tech-grid {
+    background-image:
+      linear-gradient(to right, rgba(107, 181, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(107, 181, 255, 0.07) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* Scroll-reveal: opt-in, and fully disabled for reduced-motion users */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s var(--ease-out-soft),
+      transform 0.7s var(--ease-out-soft);
+  }
+
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
