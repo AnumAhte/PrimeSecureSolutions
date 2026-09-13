@@ -1,20 +1,28 @@
 import { hero } from "@/content/site";
 import { Button } from "../ui/button";
 import { Icon } from "../ui/icon";
+import { Media } from "../ui/media";
 import { Container, Reveal } from "../ui/primitives";
 
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-navy-950 pt-[72px]">
-      {/* Background scene.
-          Uncomment the <Media> line once the control-room photograph is
-          supplied — the gradients below are already tuned to sit over a photo. */}
-      {/* <Media src="/images/hero-control-room.jpg" alt="" className="absolute inset-0 -z-20 h-full w-full" sizes="100vw" priority /> */}
+      {/* Background scene: photograph, then a cool wash to pull it onto the
+          brand palette, then the left-to-right scrim the headline sits on. */}
+      <Media
+        src="/images/hero-operations-centre.jpg"
+        alt=""
+        className="absolute inset-0 -z-20 h-full w-full"
+        sizes="100vw"
+        priority
+      />
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(130%_115%_at_78%_10%,#1b3f72_0%,#0e2344_35%,#08172c_62%,#050e1d_100%)]" />
-        <div className="tech-grid absolute inset-0 [mask-image:linear-gradient(100deg,transparent_18%,black_62%,black_100%)]" />
-        <div className="absolute top-[-30%] right-[4%] h-[130%] w-[46%] bg-[radial-gradient(closest-side,rgba(59,155,255,0.20),transparent)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(100deg,#050e1d_0%,rgba(5,14,29,0.86)_34%,rgba(8,23,44,0.42)_60%,transparent_100%)]" />
+        {/* cool blue cast, so the photo sits on the brand palette */}
+        <div className="absolute inset-0 bg-[#0e2a52] opacity-30 mix-blend-color" />
+        {/* scrim: opaque behind the headline, clearing to show the room on the right */}
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,#050e1d_0%,rgba(5,14,29,0.93)_24%,rgba(5,14,29,0.72)_42%,rgba(5,14,29,0.34)_65%,rgba(5,14,29,0.12)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(to_top,#050e1d,transparent)]" />
+        <div className="tech-grid absolute inset-0 opacity-25 [mask-image:linear-gradient(100deg,transparent_30%,black_75%)]" />
       </div>
 
       <Container className="relative grid items-center gap-12 py-14 lg:grid-cols-[minmax(0,1fr)_368px] lg:gap-12 lg:py-20 xl:py-24">

@@ -59,18 +59,34 @@ Generated from `PrimeSecure_Both_Logos.pdf`:
 - `logo-badge-256.png` / `-light-256.png` — small sizes, also the favicon
 - `logo-original-est2022.jpg` — the untouched "EST. 2022" variant, kept for reference
 
-## Photography — the one outstanding item
+## Photography
 
-The design calls for five photographs. Until they are supplied, each slot
-renders a designed placeholder (navy gradient, technical grid, service icon)
-rather than a grey box, so the page is presentable as-is.
+The hero uses a real photograph. The remaining slots render a designed
+placeholder (navy gradient, technical grid, service icon) rather than a grey
+box, so the page is presentable as-is.
 
-To drop real photos in, add the file to `public/images/` and uncomment the
-matching `<Media src>` line:
+### Hero image and licensing
+
+Two processed options ship in `public/images/`, both from **Pexels** under the
+[Pexels licence](https://www.pexels.com/license/) — free for commercial use,
+no attribution required:
+
+- `hero-operations-centre.jpg` — **currently in use.** Pexels photo 19317897.
+  Cropped to remove a third-party logo bar along the top of the video wall,
+  then desaturated slightly to sit on the brand palette.
+- `hero-control-room.jpg` — alternative. Pexels photo 30692441, a genuine CCTV
+  control room. Mirrored and brightened. Swap by changing the `src` in
+  `sections/hero.tsx`.
+
+Replace either with the client's own photography whenever it is available —
+real footage of their monitoring floor will always outperform stock.
+
+### Remaining slots
+
+Add the file to `public/images/` and uncomment the matching `<Media src>` line:
 
 | Slot                    | File                                | Component                         | Aspect |
 | ----------------------- | ----------------------------------- | --------------------------------- | ------ |
-| Hero background         | `hero-control-room.jpg`             | `sections/hero.tsx`               | 16:9 wide |
 | Service card ×4         | `service-<slug>.jpg`                | `sections/services.tsx`           | 3:2 |
 | Why Choose Us backdrop  | `why-us-facility.jpg`               | `sections/why-us.tsx`             | 16:9 wide |
 | Business Support backdrop | `office-operations.jpg`           | `sections/business-support.tsx`   | 16:9 wide |

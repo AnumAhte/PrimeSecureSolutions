@@ -7,6 +7,11 @@ import { Icon } from "./icon";
  *
  * Drop a real photo into /public/images and pass `src` — the placeholder
  * disappears and nothing else about the layout changes.
+ *
+ * The root is deliberately unpositioned: `className` must supply the
+ * positioning (`relative` for an in-flow slot, `absolute inset-0` for a
+ * backdrop). Baking `relative` in here silently beat callers' `absolute`
+ * and collapsed the element to zero height.
  */
 export function Media({
   src,
@@ -35,7 +40,7 @@ export function Media({
         : "";
 
   return (
-    <div className={`relative overflow-hidden bg-navy-900 ${className}`}>
+    <div className={`overflow-hidden bg-navy-900 ${className}`}>
       {src ? (
         <Image
           src={src}

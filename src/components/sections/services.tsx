@@ -27,7 +27,7 @@ export function Services() {
                     // src={`/images/service-${service.slug}.jpg`}
                     alt=""
                     icon={service.icon}
-                    className="h-[148px] w-full"
+                    className="relative h-[148px] w-full"
                     sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
                     overlay="soft"
                   />

@@ -1,7 +1,11 @@
-Drop the supplied photographs here, then uncomment the matching `<Media src>`
-line in the section component. Expected filenames:
+Hero photographs (already present, Pexels licence — free for commercial use):
 
-  hero-control-room.jpg          (1920px+ wide)
+  hero-operations-centre.jpg   in use — Pexels 19317897, top bar cropped off
+  hero-control-room.jpg        alternative — Pexels 30692441, mirrored
+
+Remaining slots. Drop the file here, then uncomment the matching `<Media src>`
+line in the section component:
+
   service-surveillance.jpg       (1200px+ wide, 3:2)
   service-virtual-assistants.jpg
   service-bookkeeping.jpg
