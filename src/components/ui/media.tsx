@@ -23,6 +23,7 @@ export function Media({
   sizes = "100vw",
   priority = false,
   overlay = "none",
+  blurDataURL,
 }: {
   src?: string;
   alt?: string;
@@ -34,6 +35,8 @@ export function Media({
   sizes?: string;
   priority?: boolean;
   overlay?: "none" | "soft" | "strong";
+  /** Tiny inline preview so the slot is never empty while the photo downloads. */
+  blurDataURL?: string;
 }) {
   const overlayClass =
     overlay === "strong"
@@ -51,6 +54,9 @@ export function Media({
           fill
           sizes={sizes}
           priority={priority}
+          {...(blurDataURL
+            ? ({ placeholder: "blur", blurDataURL } as const)
+            : {})}
           className={`object-cover ${imageClassName}`}
         />
       ) : (

@@ -2,7 +2,11 @@ import { hero } from "@/content/site";
 import { Button } from "../ui/button";
 import { Icon } from "../ui/icon";
 import { Media } from "../ui/media";
-import { Container, Reveal } from "../ui/primitives";
+import { Container } from "../ui/primitives";
+
+/** 24px preview of the hero photo, inlined so the slot is never empty. */
+const HERO_BLUR =
+  "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAKABgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIGAwT/xAAlEAABAwMDAwUAAAAAAAAAAAABAgMEAAURITFREmFxBhMUFTL/xAAWAQEBAQAAAAAAAAAAAAAAAAABAAL/xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAMAwEAAhEDEQA/AMbkn75DES2PMFtrVDeSk4570zdtmwpdvMlbRZaUG2wn9a86dqnbCopvUMpJB95AyPIq19QkpixykkH5A28GpgMuW73xEO4x20u9aDo6hIBxnbXntRT2JpuTEdMhCXSJCgC4OrGNt6KC03//2Q==";
 
 export function Hero() {
   return (
@@ -16,6 +20,7 @@ export function Hero() {
         imageClassName="object-[36%_center] lg:object-center"
         sizes="100vw"
         priority
+        blurDataURL={HERO_BLUR}
       />
       <div className="absolute inset-0 -z-10">
         {/* light cool cast, so the photo sits on the brand palette */}
@@ -30,8 +35,12 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(to_top,#050e1d,transparent)]" />
       </div>
 
+      {/* The hero is above the fold, so nothing here is gated on hydration:
+          no Reveal, no opacity:0 initial state. The copy and the panel are in
+          the server-rendered HTML and paint with the photograph, rather than
+          appearing a beat after it. */}
       <Container className="relative grid items-center gap-12 py-14 lg:grid-cols-[minmax(0,1fr)_368px] lg:gap-12 lg:py-20 xl:py-24">
-        <Reveal className="max-w-[680px]">
+        <div className="max-w-[680px]">
           <p className="text-[11px] font-bold tracking-[0.24em] text-brand-300 uppercase">
             {hero.eyebrow}
           </p>
@@ -61,13 +70,13 @@ export function Hero() {
               {hero.secondaryCta.label}
             </Button>
           </div>
-        </Reveal>
+        </div>
 
-        {/* Glass panel listing the four service pillars */}
-        <Reveal delay={140}>
-          {/* No backdrop-filter here: it paints a frame late, which flashed the
-              sharp photo through the panel on load. The photo behind it is
-              already soft, so a solid tint does the same job. */}
+        {/* Panel listing the four service pillars.
+            No backdrop-filter: it paints a frame late, which flashed the sharp
+            photo through on load. The photo behind it is already soft, so a
+            solid tint does the same job. */}
+        <div>
           <ul className="flex flex-col gap-1.5 rounded-2xl border border-white/12 bg-navy-950/82 p-3 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.7)] sm:p-4">
             {hero.highlights.map((item) => (
               <li key={item.title}>
@@ -87,7 +96,7 @@ export function Hero() {
               </li>
             ))}
           </ul>
-        </Reveal>
+        </div>
       </Container>
     </section>
   );
