@@ -19,6 +19,7 @@ export function Media({
   icon,
   label,
   className = "",
+  imageClassName = "object-center",
   sizes = "100vw",
   priority = false,
   overlay = "none",
@@ -28,6 +29,8 @@ export function Media({
   icon?: IconName;
   label?: string;
   className?: string;
+  /** Focal point / object-fit tweaks, e.g. "object-[38%_center] sm:object-center". */
+  imageClassName?: string;
   sizes?: string;
   priority?: boolean;
   overlay?: "none" | "soft" | "strong";
@@ -48,7 +51,7 @@ export function Media({
           fill
           sizes={sizes}
           priority={priority}
-          className="object-cover"
+          className={`object-cover ${imageClassName}`}
         />
       ) : (
         <Placeholder icon={icon} label={label} />

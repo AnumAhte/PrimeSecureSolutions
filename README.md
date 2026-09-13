@@ -67,16 +67,23 @@ box, so the page is presentable as-is.
 
 ### Hero image and licensing
 
-Two processed options ship in `public/images/`, both from **Pexels** under the
-[Pexels licence](https://www.pexels.com/license/) — free for commercial use,
-no attribution required:
+The mockup's hero is an AI-generated composite — a dome CCTV camera hanging
+into frame, a bank of camera feeds behind it, blending into a bright office
+where a headset operator works at a laptop. No single stock photo matches it,
+so `hero-surveillance.jpg` reproduces the arrangement from three photographs:
 
-- `hero-operations-centre.jpg` — **currently in use.** Pexels photo 19317897.
-  Cropped to remove a third-party logo bar along the top of the video wall,
-  then desaturated slightly to sit on the brand palette.
-- `hero-control-room.jpg` — alternative. Pexels photo 30692441, a genuine CCTV
-  control room. Mirrored and brightened. Swap by changing the `src` in
-  `sections/hero.tsx`.
+| Part | Source | Treatment |
+| ---- | ------ | --------- |
+| Control room and camera feeds | Pexels 30692441 | 2.5:1 slice across the monitors, brightened |
+| Office and headset operator | Pexels 7709302 | blended in from the right behind a 260px alpha ramp |
+| Dome camera | Pexels 7364948 | cut out with a luminance mask, hung from the top edge |
+
+All three are **Pexels licence** — free for commercial use, no attribution
+required. The build script lives outside the repo; the finished JPEG is what
+ships.
+
+`hero-operations-centre.jpg` (Pexels 19317897) remains as a single-photo
+alternative — swap the `src` in `sections/hero.tsx`.
 
 Replace either with the client's own photography whenever it is available —
 real footage of their monitoring floor will always outperform stock.

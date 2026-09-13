@@ -10,19 +10,24 @@ export function Hero() {
       {/* Background scene: photograph, then a cool wash to pull it onto the
           brand palette, then the left-to-right scrim the headline sits on. */}
       <Media
-        src="/images/hero-operations-centre.jpg"
+        src="/images/hero-surveillance.jpg"
         alt=""
         className="absolute inset-0 -z-20 h-full w-full"
+        imageClassName="object-[36%_center] lg:object-center"
         sizes="100vw"
         priority
       />
       <div className="absolute inset-0 -z-10">
-        {/* cool blue cast, so the photo sits on the brand palette */}
-        <div className="absolute inset-0 bg-[#0e2a52] opacity-30 mix-blend-color" />
-        {/* scrim: opaque behind the headline, clearing to show the room on the right */}
-        <div className="absolute inset-0 bg-[linear-gradient(100deg,#050e1d_0%,rgba(5,14,29,0.93)_24%,rgba(5,14,29,0.72)_42%,rgba(5,14,29,0.34)_65%,rgba(5,14,29,0.12)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(to_top,#050e1d,transparent)]" />
-        <div className="tech-grid absolute inset-0 opacity-25 [mask-image:linear-gradient(100deg,transparent_30%,black_75%)]" />
+        {/* light cool cast, so the photo sits on the brand palette */}
+        <div className="absolute inset-0 bg-[#0e2a52] opacity-16 mix-blend-color" />
+        {/* Scrim: solid behind the headline, then clear — the photograph is
+            meant to read at close to full brightness past the copy. */}
+        {/* Narrow screens crop deep into the photo, so it falls back to a dark
+            textured ground; the horizontal scrim takes over from lg up. */}
+        <div className="absolute inset-0 bg-navy-950/72 lg:hidden" />
+        <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,#050e1d_0%,#050e1d_20%,rgba(5,14,29,0.90)_32%,rgba(5,14,29,0.52)_43%,rgba(5,14,29,0.18)_54%,transparent_66%)] lg:block" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-[linear-gradient(to_bottom,rgba(5,14,29,0.85),transparent)]" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(to_top,#050e1d,transparent)]" />
       </div>
 
       <Container className="relative grid items-center gap-12 py-14 lg:grid-cols-[minmax(0,1fr)_368px] lg:gap-12 lg:py-20 xl:py-24">
@@ -60,7 +65,7 @@ export function Hero() {
 
         {/* Glass panel listing the four service pillars */}
         <Reveal delay={140}>
-          <ul className="flex flex-col gap-1.5 rounded-2xl border border-white/10 bg-white/[0.055] p-3 backdrop-blur-md sm:p-4">
+          <ul className="flex flex-col gap-1.5 rounded-2xl border border-white/12 bg-navy-950/72 p-3 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-md sm:p-4">
             {hero.highlights.map((item) => (
               <li key={item.title}>
                 <div className="group flex items-center gap-3.5 rounded-xl px-3 py-3 transition-colors duration-200 hover:bg-white/[0.06]">
