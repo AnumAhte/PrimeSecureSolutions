@@ -33,6 +33,9 @@ src/
   app/
     layout.tsx          fonts, metadata/SEO, header + footer shell
     page.tsx            homepage — composes the eight sections in order
+    services/page.tsx   services hub — one row per service
+    services/[slug]/    the four service pages, prerendered via
+                        generateStaticParams from services.items
     contact/page.tsx    contact page
     contact/actions.ts  contact form Server Action (validation + delivery)
     globals.css         design tokens (colours, type, motion) + base styles
@@ -142,8 +145,21 @@ because the section gradients were drawn against dark photographs.
 - Scroll reveals degrade to fully visible content without JavaScript
 - Verified with no horizontal overflow at 1440 / 1280 / 820 / 390px
 
+## The service pages
+
+`/services` lists all four; `/services/[slug]` renders each one, prerendered at
+build time from `services.items`. A slug that is not in that list 404s rather
+than rendering an empty page.
+
+Every substantive line on these pages already existed in `site.ts` — `kicker`,
+`body` and `features` were in the approved copy but unused by the homepage,
+which only shows `card`. The pages add labels ("What's included") and reuse the
+existing How It Works and CTA sections, so no marketing claim was written on
+the business's behalf. Adding a fifth service means adding it to
+`services.items`; the route, the nav links and the cross-links follow.
+
 ## Not built yet
 
-The homepage and `/contact` exist. Header and footer still link to
-`/services` and its four children, `/about`, `/industries`, `/pricing`,
-`/blog`, `/careers`, `/privacy`, `/terms` and `/faqs` — those routes 404.
+The homepage, `/services` (+ four children) and `/contact` exist. Header and
+footer still link to `/about`, `/industries`, `/pricing`, `/blog`, `/careers`,
+`/privacy`, `/terms` and `/faqs` — those routes 404.

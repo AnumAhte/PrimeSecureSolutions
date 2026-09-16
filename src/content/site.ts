@@ -426,3 +426,16 @@ export const contact = {
     ],
   },
 } as const;
+
+/**
+ * Labels for the service pages. Deliberately just labels: every substantive
+ * line on those pages comes from `services.items` above, which is the approved
+ * copy in _design/homepage-copy.md. Nothing here makes a claim on the
+ * business's behalf.
+ */
+export const servicePage = {
+  eyebrow: "Our Services",
+  featuresTitle: "What's included",
+  otherTitle: "Explore our other services",
+  backLabel: "All services",
+} as const;
