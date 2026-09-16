@@ -114,16 +114,18 @@ real footage of their monitoring floor will always outperform stock.
 
 | Slot                      | File                     | Component                       | Size |
 | ------------------------- | ------------------------ | ------------------------------- | ---- |
-| Service card ×4           | `service-<slug>.jpg`     | `sections/services.tsx`         | 1400x933 |
+| Service card ×4           | `service-<slug>.jpg`     | `sections/services.tsx`         | 523x379 |
 | Why Choose Us backdrop    | `why-us-facility.jpg`    | `sections/why-us.tsx`           | 1920x1080 |
 | Business Support backdrop | `office-operations.jpg`  | `sections/business-support.tsx` | 1920x1080 |
 | Testimonial backdrop      | `testimonial-office.jpg` | `sections/testimonials.tsx`     | 1920x1080 |
 
 Service slugs: `surveillance`, `virtual-assistants`, `bookkeeping`, `back-office`.
 
-Swapping one in is not just a matter of cropping: the three backdrops are
-normalised to a fixed luminance before saving, because the section gradients
-were drawn against dark photographs. `public/images/README.md` has the numbers.
+The four service cards are client-supplied, cut from the design render in
+`_design/`; the three backdrops are Pexels. Swapping a backdrop in is not just a
+matter of cropping — they are normalised to a fixed luminance before saving,
+because the section gradients were drawn against dark photographs.
+`public/images/README.md` has the numbers and the provenance of each file.
 
 ## Placeholder content to replace before launch
 

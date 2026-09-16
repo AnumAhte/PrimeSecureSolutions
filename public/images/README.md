@@ -1,6 +1,13 @@
-All photographs are from Pexels, under the Pexels licence (free for commercial
-use, no attribution required). IDs are recorded so a frame can be re-pulled or
-re-cropped from the original: https://www.pexels.com/photo/<id>/
+Two provenances in here, do not mix them up:
+
+  CLIENT-SUPPLIED  the hero and the four service cards, cut from artwork the
+                   client provided in ../_design/. Origin and usage rights are
+                   NOT verified in this repo — confirm before launch.
+
+  PEXELS           the three section backdrops, under the Pexels licence (free
+                   for commercial use, no attribution required). IDs are
+                   recorded so a frame can be re-pulled or re-cropped:
+                   https://www.pexels.com/photo/<id>/
 
 hero-surveillance.jpg   IN USE. 2400x960. The finished hero artwork supplied by
                         the client (_design/IMG_5522.PNG) — the mockup scene in
@@ -47,13 +54,27 @@ hero-surveillance.jpg   IN USE. 2400x960. The finished hero artwork supplied by
 hero-operations-centre.jpg  Alternative single photo, Pexels 19317897.
                         Swap by changing `src` in sections/hero.tsx.
 
-Service cards — 1400x933, q76. Rendered ~290x148, so the slot crops to roughly
-2:1 off the centre; check the subject survives that crop before swapping one.
+Service cards — 523x379, q84. CLIENT-SUPPLIED, cut from the four-card render in
+../_design/ ("ChatGPT Image Sep 16, 2026, 07_25_30 PM.png", 2172x724). Each card
+photo was located by scanning column brightness for the gaps between cards, so
+the crops sit on the real card edges rather than eyeballed ones; the photo area
+ends at y=382 where the white card body starts.
 
-  service-surveillance.jpg        30692441  unmanned control room, camera feeds
-  service-virtual-assistants.jpg  8204396   headset operator at a desk
-  service-bookkeeping.jpg         209224    calculator and pen on a bar chart
-  service-back-office.jpg         10347152  desk with a lever-arch file, papers
+  service-surveillance.jpg        dome camera, monitor wall, operator
+  service-virtual-assistants.jpg  headset operator at a laptop
+  service-bookkeeping.jpg         calculator, charts and pen
+  service-back-office.jpg         plant, mug and laptop on a desk
+
+The slot renders ~290x148 and crops to roughly 2:1 off the centre; all four
+subjects survive that. 523px is the native width available — enough for the
+desktop card at 2x (580px) but about 1.37x short for a full-width card on a
+phone, so they are marginally soft there. If larger exports of this render ever
+appear, re-cut from those; do not upscale these.
+
+NOT usable: ../_design/PrimeSecure_4_Service_Images.zip holds the same four
+images at 301x63, which are crops of the mockup JPEG itself, with the blue icon
+chip burned in. The chip is drawn by the card component as SVG, so a baked-in
+one doubles it.
 
 Section backdrops — 1920x1080, q70. Each sits under a navy scrim of 0.82-1.0
 opacity, so these are texture, not content. They are normalised to a mean
