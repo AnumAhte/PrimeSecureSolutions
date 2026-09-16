@@ -20,7 +20,11 @@ export type IconName =
   | "warehouse"
   | "building"
   | "briefcase"
-  | "growth";
+  | "growth"
+  | "phone"
+  | "mail"
+  | "pin"
+  | "clock";
 
 export const site = {
   name: "PrimeSecure Solutions",
@@ -355,3 +359,70 @@ export const footer = {
     },
   ],
 };
+
+export const contact = {
+  eyebrow: "Contact Us",
+  title: "Let's Build the Right Support Team for You.",
+  body: "Tell us what you need help with and we'll help you work out the right service and support model for your business. No complicated process — just a conversation about what you're dealing with and where we can take work off your plate.",
+
+  methods: [
+    {
+      icon: "phone" as IconName,
+      label: "Call us",
+      value: site.phone,
+      href: `tel:${site.phone.replace(/[^\d+]/g, "")}`,
+      note: "Monday to Friday, 9am – 6pm.",
+    },
+    {
+      icon: "mail" as IconName,
+      label: "Email us",
+      value: site.email,
+      href: `mailto:${site.email}`,
+      note: "We reply within one business day.",
+    },
+    {
+      icon: "pin" as IconName,
+      label: "Visit us",
+      value: `${site.address.line1}, ${site.address.line2}`,
+      note: "By appointment.",
+    },
+  ],
+
+  form: {
+    title: "Send us a message",
+    body: "The more you can tell us about your operation, the more useful our first reply will be.",
+    services: [
+      "Surveillance & Monitoring",
+      "Virtual Assistants",
+      "Bookkeeping",
+      "Back Office Support",
+      "More than one / not sure yet",
+    ],
+    submit: "Send Message",
+    /** Shown once the enquiry is accepted. */
+    successTitle: "Thanks — we've got it.",
+    successBody:
+      "We'll come back to you within one business day. If it's urgent, call us and you'll get someone straight away.",
+  },
+
+  next: {
+    eyebrow: "What Happens Next",
+    items: [
+      {
+        step: "01",
+        title: "We read it properly",
+        body: "A person reads your message — not an autoresponder — and comes back within one business day.",
+      },
+      {
+        step: "02",
+        title: "A short conversation",
+        body: "Fifteen minutes to understand your operation, your hours, and what's actually taking up your team's time.",
+      },
+      {
+        step: "03",
+        title: "A proposal that fits",
+        body: "We suggest the services and staffing that match what you described, and what each one would cost.",
+      },
+    ],
+  },
+} as const;
