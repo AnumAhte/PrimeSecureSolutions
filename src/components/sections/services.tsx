@@ -24,7 +24,7 @@ export function Services() {
               <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-ice-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-[0_24px_50px_-24px_rgba(11,27,48,0.35)]">
                 <div className="relative">
                   <Media
-                    // src={`/images/service-${service.slug}.jpg`}
+                    src={`/images/service-${service.slug}.jpg`}
                     alt=""
                     icon={service.icon}
                     className="relative h-[148px] w-full"

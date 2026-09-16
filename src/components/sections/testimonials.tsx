@@ -15,7 +15,7 @@ export function Testimonials() {
   return (
     <section className="relative isolate overflow-hidden bg-navy-950 py-18 lg:py-20">
       <Media
-        // src="/images/testimonial-office.jpg"
+        src="/images/testimonial-office.jpg"
         alt=""
         className="absolute inset-0 -z-10 h-full w-full"
         sizes="100vw"

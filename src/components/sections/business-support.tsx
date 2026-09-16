@@ -8,7 +8,7 @@ export function BusinessSupport() {
   return (
     <section className="relative isolate overflow-hidden bg-navy-950 py-20 lg:py-24">
       <Media
-        // src="/images/office-operations.jpg"
+        src="/images/office-operations.jpg"
         alt=""
         className="absolute inset-0 -z-10 h-full w-full"
         sizes="100vw"
