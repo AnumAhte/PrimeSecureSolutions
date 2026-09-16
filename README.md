@@ -89,31 +89,20 @@ grid, service icon) remains as the fallback for any slot added later.
 
 ### Hero image and licensing
 
-The mockup's hero is an AI-generated composite — a dome CCTV camera hanging
-into frame, a bank of camera feeds behind it, blending into a bright office
-where a headset operator works at a laptop. No single stock photo matches it,
-so `hero-surveillance.jpg` reproduces the arrangement from three photographs:
+`hero-surveillance.jpg` is the finished artwork supplied by the client
+(`_design/IMG_5522.PNG`): the mockup scene in a single frame — dome camera, a
+wall of camera feeds with an operator in front of it, and a bright office with
+a headset operator on the right.
 
-| Part | Source | Treatment |
-| ---- | ------ | --------- |
-| Wall of camera feeds | Pexels 11783119 | right half only, kept near 1:1 so the grid stays legible; blue-shifted by multiply |
-| Office and headset operator | Pexels 7709302 | feathered in from the right over a short ramp |
-| Dome camera | Pexels 7364948 | alpha cutout, hung below the header band |
+**It is client-supplied, not stock.** Its origin and usage rights have not been
+verified in this repo — confirm them before launch. It replaced an earlier
+three-photo Pexels composite that approximated the same scene.
 
-`public/images/README.md` records the traps in that composite — header
-clearance, why the camera is a cutout rather than a `screen` blend, and the
-mobile focal point.
-
-A depth-of-field falloff is baked into the JPEG: the dome camera and the
-camera feeds stay sharp, and everything from roughly 55% across is
-progressively blurred. That is deliberate — leaving it to a `backdrop-filter`
-on the panel meant the sharp face flashed through for a frame on every load.
-For the same reason the hero panel uses a solid tint rather than
-`backdrop-blur`.
-
-All three are **Pexels licence** — free for commercial use, no attribution
-required. The build script lives outside the repo; the finished JPEG is what
-ships.
+The supplied file is 2132x498 (4.28:1) while the hero renders near 2.6:1, so it
+is scaled to the full width and padded to 2400x960 rather than cropped — a
+plain `object-cover` would have taken the camera off the left edge and the
+operator off the right. `public/images/README.md` records how the padding is
+built and why the camera reads faintly behind the headline on desktop.
 
 `hero-operations-centre.jpg` (Pexels 19317897) remains as a single-photo
 alternative — swap the `src` in `sections/hero.tsx`.

@@ -2,43 +2,41 @@ All photographs are from Pexels, under the Pexels licence (free for commercial
 use, no attribution required). IDs are recorded so a frame can be re-pulled or
 re-cropped from the original: https://www.pexels.com/photo/<id>/
 
-hero-surveillance.jpg   IN USE. 2400x960, composited to match the approved
-                        mockup's hero: a dome CCTV camera hanging into frame, a
-                        wall of camera feeds behind it, blending into a bright
-                        office with a headset operator on the right.
-                        Built from three Pexels photos (11783119 monitor wall —
-                        only its right half, the foreground subject is cropped
-                        away; 7709302 office; 7364948 dome camera).
+hero-surveillance.jpg   IN USE. 2400x960. The finished hero artwork supplied by
+                        the client (_design/IMG_5522.PNG) — the mockup scene in
+                        one frame: dome camera, a wall of camera feeds with an
+                        operator in front of it, and a bright office with a
+                        headset operator on the right.
 
-                        Rebuilt by scratch/hero.js-style compositing: the wall is
-                        kept near 1:1 so the grid of feeds stays legible (scaling
-                        it to fill the canvas magnified it to two screens), and
-                        is blue-shifted by multiply rather than sharp's `tint`,
-                        which washes the image out. The office is feathered in
-                        over a short ramp — a long one leaves visible streaks
-                        where the two halves are both half-transparent.
+                        PROVENANCE: supplied by the client, not stock. Origin and
+                        usage rights have not been verified here; confirm before
+                        launch. It replaced a three-photo Pexels composite that
+                        approximated the same scene.
 
-                        The camera must clear the top of the section. A 72px
-                        header and a 96px scrim at 0.85 opacity cover roughly the
-                        top 170px of this canvas; placed any higher the camera is
-                        invisible on the page while looking fine in the file. The
-                        crop is deliberately tall so the mount still runs to the
-                        frame edge while the dome hangs below that band.
+                        The source is 2132x498 (4.28:1) but the hero slot renders
+                        near 2.6:1, so object-cover on the raw file would crop
+                        about 20% off each side — taking the camera off the left
+                        and the operator off the right. It is therefore scaled to
+                        the full 2400 width and padded to 960 tall. The padding is
+                        a stretched, blurred copy of the outermost rows rather
+                        than a flat fill, which would leave a visible horizon; the
+                        bands sit under the header and the top/bottom gradients.
+                        Re-run scratch hero-supplied.js logic if the artwork is
+                        replaced.
 
-                        The camera is an alpha cutout, not a `screen` blend. Screen
-                        only works while whatever sits behind it is dark — it
-                        erased the camera the moment the wall behind was brightened.
-
-                        Mobile uses object-[20%_center], not the camera's own
-                        position (~37%): the narrow crop centred there magnified
-                        the dome until it filled the phone screen. Desktop is
-                        lg:object-center and unaffected. previewClassName must
-                        mirror whatever this is set to.
+                        On desktop the camera falls behind the headline and the
+                        left scrim, which is why it reads faintly. That is the
+                        scrim doing its job — the dome is bright white and would
+                        otherwise fight white type. The mockup avoids it only
+                        because its type is proportionally smaller.
 
                         HERO_BLUR in sections/hero.tsx is a 160px JPEG of THIS
                         file. Regenerate it whenever this image changes, or the
                         hero paints the previous composite before the photo
                         arrives.
+
+                        Mobile uses object-[20%_center]; previewClassName must
+                        mirror whatever that is set to.
 
                         Verify hero changes on the rendered page, not the file.
                         Next caches optimised images in .next/dev/cache/images
