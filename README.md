@@ -33,6 +33,7 @@ src/
   app/
     layout.tsx          fonts, metadata/SEO, header + footer shell
     page.tsx            homepage — composes the eight sections in order
+    industries/page.tsx industries page
     services/page.tsx   services hub — one row per service
     services/[slug]/    the four service pages, prerendered via
                         generateStaticParams from services.items
@@ -160,6 +161,22 @@ the business's behalf. Adding a fifth service means adding it to
 
 ## Not built yet
 
-The homepage, `/services` (+ four children) and `/contact` exist. Header and
-footer still link to `/about`, `/industries`, `/pricing`, `/blog`, `/careers`,
-`/privacy`, `/terms` and `/faqs` — those routes 404.
+The homepage, `/services` (+ four children), `/industries` and `/contact`
+exist. Header and footer still link to `/about`, `/pricing`, `/blog`,
+`/careers`, `/privacy`, `/terms` and `/faqs` — those routes 404.
+
+## Known copy discrepancy: industries
+
+`_design/homepage-copy.md` and the approved mockup disagree, and `site.ts`
+follows the mockup:
+
+| Copy doc | site.ts / mockup |
+| -------- | ---------------- |
+| E-Commerce | *(absent)* |
+| *(warehouses folded into Retail)* | Warehousing |
+
+So **E-Commerce appears in the approved copy but nowhere on the site**, and
+Warehousing appears on the site but not in the copy. This has not been resolved
+either way — it changes which sectors the business says it serves, so it is the
+client's call. Fixing it means editing `industries.items` in `site.ts`; the
+homepage section and `/industries` both read from there.
