@@ -33,7 +33,14 @@ src/
   app/
     layout.tsx          fonts, metadata/SEO, header + footer shell
     page.tsx            homepage — composes the eight sections in order
-    industries/page.tsx industries page
+    about/page.tsx      about
+    blog/page.tsx       blog index (empty state until posts exist)
+    careers/page.tsx    careers (empty state until roles exist)
+    faqs/page.tsx       FAQs, native <details> accordion + FAQPage JSON-LD
+    industries/page.tsx industries
+    pricing/page.tsx    pricing — renders plans if any, else a quote panel
+    privacy/page.tsx    ─┐ both render components/sections/legal-page.tsx,
+    terms/page.tsx      ─┘ which shows a notice while the text is missing
     services/page.tsx   services hub — one row per service
     services/[slug]/    the four service pages, prerendered via
                         generateStaticParams from services.items
@@ -159,11 +166,52 @@ existing How It Works and CTA sections, so no marketing claim was written on
 the business's behalf. Adding a fifth service means adding it to
 `services.items`; the route, the nav links and the cross-links follow.
 
-## Not built yet
+## Content that is deliberately missing
 
-The homepage, `/services` (+ four children), `/industries` and `/contact`
-exist. Header and footer still link to `/about`, `/pricing`, `/blog`,
-`/careers`, `/privacy`, `/terms` and `/faqs` — those routes 404.
+Every page in the nav and footer now exists, and no internal link 404s. Three
+pages render a visible "not published" state rather than invented content,
+because only the business can supply it:
+
+| Page | Fill by setting | Until then |
+| ---- | --------------- | ---------- |
+| `/pricing` | `pricing.plans` | shows a request-a-quote panel, no rates |
+| `/blog` | `blog.posts` | shows an empty state |
+| `/careers` | `careers.openings` | empty state + speculative contact route |
+| `/privacy`, `/terms` | `legal.privacy.sections`, `legal.terms.sections` | notice; both are `robots: noindex` |
+| `/about` | `about.story.paragraphs` | the section is skipped entirely |
+
+Populate the array and the page switches to the real layout — no code change.
+
+### CTA hierarchy
+
+Set once in `site.ts` as `cta`, and on each `services.items[].cta`:
+
+| Level | Wording | Where |
+| ----- | ------- | ----- |
+| Primary | Get a Free Consultation | header, hero, every page's closing band |
+| Service | Request a Monitoring Assessment / Build Your VA Team / Get Bookkeeping Support / Build Your Support Team | service cards and service pages |
+| Secondary | Discuss Your Needs | service pages |
+
+Do not add variants — "Learn More", "Get Started", "Contact Us", "Request a
+Quote". Two deliberate exceptions, both non-sales contexts: careers uses "Send
+Us Your Details" and the unpublished-legal notice uses "Ask Us a Question".
+
+### Where the words came from
+
+Only the homepage copy was approved (`_design/homepage-copy.md`). So anything
+restating it is reused from the existing exports rather than retyped, and
+anything genuinely new is marked `DRAFT` in `site.ts` and needs sign-off. Prices,
+legal terms, company history and response times are not invented anywhere.
+
+Two corrections made while building these pages:
+
+- The contact page previously claimed "Monday to Friday, 9am – 6pm", "We reply
+  within one business day" and 24/7 monitoring cover. None of that was approved
+  copy — it was written during the build. Replaced with the approved line:
+  "Available according to your selected service and support requirements."
+- The approved copy's FINAL CTA block ("Have a task you want to outsource? /
+  Let's Talk.") was not on the site at all. It is now `finalCta`, used at the
+  foot of the inner pages.
 
 ## Known copy discrepancy: industries
 

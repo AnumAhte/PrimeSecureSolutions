@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { nav } from "@/content/site";
+import { cta, nav } from "@/content/site";
 import { Button } from "./ui/button";
 import { ChevronDown } from "./ui/icon";
 import { Logo } from "./ui/logo";
@@ -104,7 +104,7 @@ export function SiteHeader() {
           {/* wrapper owns the responsive display — putting `hidden` on the
               Button itself collides with the `inline-flex` in its base styles */}
           <span className="hidden sm:block">
-            <Button href="/contact">Get a Free Consultation</Button>
+            <Button href={cta.primary.href}>{cta.primary.label}</Button>
           </span>
 
           <button
@@ -172,7 +172,7 @@ export function SiteHeader() {
           })}
           <div className="mt-3 sm:hidden">
             <Button href="/contact" size="lg" className="w-full">
-              Get a Free Consultation
+              {cta.primary.label}
             </Button>
           </div>
         </Container>

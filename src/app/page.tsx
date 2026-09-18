@@ -1,23 +1,35 @@
 import { BusinessSupport } from "@/components/sections/business-support";
-import { CtaBand } from "@/components/sections/cta-band";
+import { Capabilities } from "@/components/sections/capabilities";
+import { Faq, FaqJsonLd } from "@/components/sections/faq";
+import { FinalCta } from "@/components/sections/final-cta";
 import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Industries } from "@/components/sections/industries";
+import { Security } from "@/components/sections/security";
 import { Services } from "@/components/sections/services";
-import { Testimonials } from "@/components/sections/testimonials";
+import { SurveillanceFeature } from "@/components/sections/surveillance-feature";
 import { WhyUs } from "@/components/sections/why-us";
 
+/**
+ * Section order is the client's specified flow:
+ * Hero → Capabilities → Services → Why PrimeSecure → Surveillance →
+ * Business Support → How It Works → Industries → Security → FAQ → CTA.
+ */
 export default function HomePage() {
   return (
     <>
       <Hero />
+      <Capabilities />
       <Services />
       <WhyUs />
-      <HowItWorks />
+      <SurveillanceFeature />
       <BusinessSupport />
+      <HowItWorks />
       <Industries />
-      <Testimonials />
-      <CtaBand />
+      <Security />
+      <Faq limit={5} showAllLink background="white" />
+      <FinalCta />
+      <FaqJsonLd />
     </>
   );
 }

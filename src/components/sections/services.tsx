@@ -44,11 +44,8 @@ export function Services() {
                   <p className="mt-2.5 flex-1 text-[13px] leading-[1.7] text-ink-500">
                     {service.card}
                   </p>
-                  <TextLink
-                    href={`/services/${service.slug}`}
-                    className="mt-4"
-                  >
-                    Learn More
+                  <TextLink href={`/services/${service.slug}`} className="mt-4">
+                    {service.cta.label}
                   </TextLink>
                 </div>
               </article>

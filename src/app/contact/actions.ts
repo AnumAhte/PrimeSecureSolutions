@@ -25,7 +25,15 @@ export type EnquiryState = {
   values?: Record<string, string>;
 };
 
-const MAX = { name: 100, email: 150, phone: 40, company: 120, message: 4000 };
+const MAX = {
+  name: 100,
+  email: 150,
+  phone: 40,
+  company: 120,
+  website: 200,
+  message: 4000,
+  serviceDetail: 2000,
+};
 
 // Deliberately permissive: the only real test of an address is delivery, and
 // clever patterns reject valid addresses more often than they catch typos.
@@ -44,13 +52,17 @@ export async function submitEnquiry(
     email: clean(formData.get("email")),
     phone: clean(formData.get("phone")),
     company: clean(formData.get("company")),
+    website: clean(formData.get("website")),
+    locations: clean(formData.get("locations")),
     service: clean(formData.get("service")),
+    serviceDetail: clean(formData.get("serviceDetail")),
     message: clean(formData.get("message")),
   };
 
-  // Honeypot: a hidden field no human fills in. Accept silently rather than
-  // showing an error, so a bot gets no signal about why it failed.
-  if (clean(formData.get("website"))) {
+  // Honeypot: a hidden field no human fills in. Named "fax" because "website"
+  // is now a real field on this form. Accept silently rather than showing an
+  // error, so a bot gets no signal about why it failed.
+  if (clean(formData.get("fax"))) {
     return { status: "success" };
   }
 
@@ -65,6 +77,10 @@ export async function submitEnquiry(
   if (values.phone.length > MAX.phone) errors.phone = "That number is too long.";
   if (values.company.length > MAX.company)
     errors.company = "That company name is too long.";
+  if (values.website.length > MAX.website)
+    errors.website = "That address is too long.";
+  if (values.serviceDetail.length > MAX.serviceDetail)
+    errors.serviceDetail = "Please keep this under 2000 characters.";
 
   if (!values.message) errors.message = "Please tell us what you need help with.";
   else if (values.message.length > MAX.message)

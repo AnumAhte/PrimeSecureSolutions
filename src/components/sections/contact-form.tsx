@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useId } from "react";
+import { useActionState, useId, useState } from "react";
 import { submitEnquiry, type EnquiryState } from "@/app/contact/actions";
 import { contact, site } from "@/content/site";
 import { ArrowRight, Icon } from "../ui/icon";
@@ -11,6 +11,8 @@ const field =
   "w-full rounded-lg border bg-white px-3.5 py-2.5 text-[14px] text-ink-900 transition-colors placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40";
 const fieldOk = "border-ice-200 focus:border-brand-400";
 const fieldBad = "border-red-300 focus:border-red-400";
+const selectChevron =
+  `appearance-none bg-[length:16px] bg-[right_0.9rem_center] bg-no-repeat pr-10 bg-[url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a6e88' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")]`;
 
 export function ContactForm() {
   const [state, formAction, pending] = useActionState(
@@ -18,6 +20,8 @@ export function ContactForm() {
     initialState,
   );
   const uid = useId();
+  const [service, setService] = useState(state.values?.service ?? "");
+  const followUp = contact.form.followUps[service];
 
   if (state.status === "success") {
     return (
@@ -48,18 +52,15 @@ export function ContactForm() {
       <h2 className="font-display text-[19px] font-extrabold text-ink-900">
         {contact.form.title}
       </h2>
-      <p className="mt-2 text-[13.5px] leading-[1.7] text-ink-500">
-        {contact.form.body}
-      </p>
 
       <form action={formAction} className="mt-7 grid gap-5" noValidate>
         {/* Honeypot. Hidden from people and from screen readers, but a bot
             filling every field in the DOM will trip it. */}
         <div aria-hidden="true" className="hidden">
-          <label htmlFor={id("website")}>Website</label>
+          <label htmlFor={id("fax")}>Fax</label>
           <input
-            id={id("website")}
-            name="website"
+            id={id("fax")}
+            name="fax"
             type="text"
             tabIndex={-1}
             autoComplete="off"
@@ -107,6 +108,33 @@ export function ContactForm() {
             defaultValue={v.company}
             error={err.company}
           />
+          <Field
+            id={id("website")}
+            errorId={errId("website")}
+            name="website"
+            type="url"
+            label="Company website"
+            autoComplete="url"
+            placeholder="https://"
+            defaultValue={v.website}
+            error={err.website}
+          />
+          <div>
+            <Label htmlFor={id("locations")}>Number of locations</Label>
+            <select
+              id={id("locations")}
+              name="locations"
+              defaultValue={v.locations ?? ""}
+              className={`${field} ${fieldOk} ${selectChevron}`}
+            >
+              <option value="">Select</option>
+              {contact.form.locationOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div>
@@ -114,8 +142,9 @@ export function ContactForm() {
           <select
             id={id("service")}
             name="service"
-            defaultValue={v.service ?? ""}
-            className={`${field} ${fieldOk} appearance-none bg-[length:16px] bg-[right_0.9rem_center] bg-no-repeat pr-10 bg-[url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a6e88' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")]`}
+            value={service}
+            onChange={(e) => setService(e.target.value)}
+            className={`${field} ${fieldOk} ${selectChevron}`}
           >
             <option value="">Select a service</option>
             {contact.form.services.map((service) => (
@@ -125,6 +154,22 @@ export function ContactForm() {
             ))}
           </select>
         </div>
+
+        {/* Only rendered for the chosen service, so the form stays short. */}
+        {followUp && (
+          <div>
+            <Label htmlFor={id("serviceDetail")}>{followUp.label}</Label>
+            <textarea
+              id={id("serviceDetail")}
+              name="serviceDetail"
+              rows={3}
+              defaultValue={v.serviceDetail}
+              placeholder={followUp.placeholder}
+              className={`${field} resize-y ${err.serviceDetail ? fieldBad : fieldOk}`}
+            />
+            <FieldError id={errId("serviceDetail")} message={err.serviceDetail} />
+          </div>
+        )}
 
         <div>
           <Label htmlFor={id("message")} required>
@@ -237,6 +282,7 @@ function Field({
   required,
   autoComplete,
   defaultValue,
+  placeholder,
   error,
 }: {
   id: string;
@@ -247,6 +293,7 @@ function Field({
   required?: boolean;
   autoComplete?: string;
   defaultValue?: string;
+  placeholder?: string;
   error?: string;
 }) {
   return (
@@ -261,6 +308,7 @@ function Field({
         required={required}
         autoComplete={autoComplete}
         defaultValue={defaultValue}
+        placeholder={placeholder}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
         className={`${field} ${error ? fieldBad : fieldOk}`}

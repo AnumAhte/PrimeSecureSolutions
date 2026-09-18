@@ -18,9 +18,7 @@ export function WhyUs() {
         <Reveal>
           <Eyebrow tone="dark">{whyUs.eyebrow}</Eyebrow>
           <h2 className="font-display mt-3.5 text-[clamp(1.6rem,2.9vw,2.05rem)] leading-[1.2] font-extrabold tracking-[-0.022em] text-white">
-            {whyUs.titleLead}
-            <br />
-            {whyUs.titleAccentLead}
+            {whyUs.titleLead}{" "}
             <span className="text-brand-400">{whyUs.titleAccent}</span>
           </h2>
           <p className="mt-5 max-w-[430px] text-[14.5px] leading-[1.75] text-white/65">
