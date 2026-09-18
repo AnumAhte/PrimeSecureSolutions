@@ -26,6 +26,13 @@ export type IconName =
   | "pin"
   | "clock";
 
+/**
+ * Canonical origin. Used by metadataBase, the sitemap, robots.txt and the
+ * Open Graph image URL, so all four stay in step.
+ * NOT VERIFIED — confirm this is the production domain before launch.
+ */
+export const siteUrl = "https://primesecuresolutions.com";
+
 export const site = {
   name: "PrimeSecure Solutions",
   nameParts: { first: "Prime", second: "Secure" },
@@ -440,6 +447,11 @@ export const ctaBand = {
 
 export const footer = {
   blurb: "Professional business support designed around your needs.",
+  /** Bottom bar links, beside the copyright line. */
+  legalLinks: [
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+  ],
   columns: [
     {
       title: "Company",
@@ -520,6 +532,24 @@ export const contact = {
 
   form: {
     title: "Send us a message",
+    /** Every visible string in the form, so all of it stays editable. */
+    labels: {
+      name: "Your name",
+      email: "Email",
+      phone: "Phone",
+      company: "Company",
+      website: "Company website",
+      websitePlaceholder: "https://",
+      locations: "Number of locations",
+      locationsPlaceholder: "Select",
+      service: "What can we help with?",
+      servicePlaceholder: "Select a service",
+      message: "How can we help?",
+      messagePlaceholder:
+        "Tell us about your business, the hours you need covered, and what's taking up your team's time.",
+      privacy: "We'll only use these details to reply to you.",
+      sending: "Sending…",
+    },
     /** Field labels and UI strings only — no service promises. */
     services: [
       "Surveillance & Monitoring",
@@ -562,6 +592,9 @@ export const contact = {
 export const servicePage = {
   eyebrow: "Our Services",
   featuresTitle: "What's included",
+  /** Section eyebrows, shown only where the service has that section. */
+  processEyebrow: "Process",
+  packagesEyebrow: "Options",
   otherTitle: "Explore our other services",
   backLabel: "All services",
 } as const;
@@ -625,6 +658,14 @@ export const pricing = {
    *  without stating a price. */
   title: "Priced Around What You Actually Need.",
   body: "Every business needs a different mix of services, hours and cover, so support is scoped to your requirements rather than sold as a fixed package.",
+  /** Section heading above `factors`. */
+  factorsEyebrow: "What shapes a quote",
+  factorsTitle: "Three things decide the number.",
+  /** Shown while `plans` is empty. */
+  quotePanel: {
+    title: "Tell us what you need and we'll price it.",
+    body: "Support is scoped to your requirements rather than sold as a fixed package, so the quickest route to a number is a short conversation about your operation.",
+  },
   /** DRAFT — what a quote depends on. Structural, not a price claim. */
   factors: [
     {
@@ -659,6 +700,8 @@ export const pricing = {
 export const faqs = {
   eyebrow: "FAQs",
   title: "Questions, Answered.",
+  /** Link shown under a shortened list, e.g. on the homepage. */
+  seeAllLabel: "See all questions",
   items: [
     {
       q: "Do you provide 24/7 surveillance?",

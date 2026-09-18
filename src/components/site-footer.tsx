@@ -110,13 +110,17 @@ export function SiteFooter() {
             &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
           <p className="flex items-center gap-3">
-            <Link href="/privacy" className="transition-colors hover:text-brand-300">
-              Privacy Policy
-            </Link>
-            <span className="text-white/20">|</span>
-            <Link href="/terms" className="transition-colors hover:text-brand-300">
-              Terms of Service
-            </Link>
+            {footer.legalLinks.map((link, i) => (
+              <span key={link.href} className="flex items-center gap-3">
+                {i > 0 && <span className="text-white/20">|</span>}
+                <Link
+                  href={link.href}
+                  className="transition-colors hover:text-brand-300"
+                >
+                  {link.label}
+                </Link>
+              </span>
+            ))}
           </p>
         </div>
       </Container>

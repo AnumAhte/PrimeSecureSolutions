@@ -9,6 +9,13 @@ import { Security } from "@/components/sections/security";
 import { Services } from "@/components/sections/services";
 import { SurveillanceFeature } from "@/components/sections/surveillance-feature";
 import { WhyUs } from "@/components/sections/why-us";
+import type { Metadata } from "next";
+
+/* Title and description are inherited from the root layout; this only supplies
+   the canonical, which every other page already declares. */
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 /**
  * Section order is the client's specified flow:

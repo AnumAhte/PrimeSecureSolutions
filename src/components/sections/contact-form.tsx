@@ -22,6 +22,7 @@ export function ContactForm() {
   const uid = useId();
   const [service, setService] = useState(state.values?.service ?? "");
   const followUp = contact.form.followUps[service];
+  const L = contact.form.labels;
 
   if (state.status === "success") {
     return (
@@ -72,7 +73,7 @@ export function ContactForm() {
             id={id("name")}
             errorId={errId("name")}
             name="name"
-            label="Your name"
+            label={L.name}
             required
             autoComplete="name"
             defaultValue={v.name}
@@ -83,7 +84,7 @@ export function ContactForm() {
             errorId={errId("email")}
             name="email"
             type="email"
-            label="Email"
+            label={L.email}
             required
             autoComplete="email"
             defaultValue={v.email}
@@ -94,7 +95,7 @@ export function ContactForm() {
             errorId={errId("phone")}
             name="phone"
             type="tel"
-            label="Phone"
+            label={L.phone}
             autoComplete="tel"
             defaultValue={v.phone}
             error={err.phone}
@@ -103,7 +104,7 @@ export function ContactForm() {
             id={id("company")}
             errorId={errId("company")}
             name="company"
-            label="Company"
+            label={L.company}
             autoComplete="organization"
             defaultValue={v.company}
             error={err.company}
@@ -113,21 +114,21 @@ export function ContactForm() {
             errorId={errId("website")}
             name="website"
             type="url"
-            label="Company website"
+            label={L.website}
             autoComplete="url"
-            placeholder="https://"
+            placeholder={L.websitePlaceholder}
             defaultValue={v.website}
             error={err.website}
           />
           <div>
-            <Label htmlFor={id("locations")}>Number of locations</Label>
+            <Label htmlFor={id("locations")}>{L.locations}</Label>
             <select
               id={id("locations")}
               name="locations"
               defaultValue={v.locations ?? ""}
               className={`${field} ${fieldOk} ${selectChevron}`}
             >
-              <option value="">Select</option>
+              <option value="">{L.locationsPlaceholder}</option>
               {contact.form.locationOptions.map((option) => (
                 <option key={option} value={option}>
                   {option}
@@ -138,7 +139,7 @@ export function ContactForm() {
         </div>
 
         <div>
-          <Label htmlFor={id("service")}>What can we help with?</Label>
+          <Label htmlFor={id("service")}>{L.service}</Label>
           <select
             id={id("service")}
             name="service"
@@ -146,7 +147,7 @@ export function ContactForm() {
             onChange={(e) => setService(e.target.value)}
             className={`${field} ${fieldOk} ${selectChevron}`}
           >
-            <option value="">Select a service</option>
+            <option value="">{L.servicePlaceholder}</option>
             {contact.form.services.map((service) => (
               <option key={service} value={service}>
                 {service}
@@ -173,7 +174,7 @@ export function ContactForm() {
 
         <div>
           <Label htmlFor={id("message")} required>
-            How can we help?
+            {L.message}
           </Label>
           <textarea
             id={id("message")}
@@ -183,7 +184,7 @@ export function ContactForm() {
             defaultValue={v.message}
             aria-invalid={err.message ? true : undefined}
             aria-describedby={err.message ? errId("message") : undefined}
-            placeholder="Tell us about your business, the hours you need covered, and what's taking up your team's time."
+            placeholder={L.messagePlaceholder}
             className={`${field} resize-y ${err.message ? fieldBad : fieldOk}`}
           />
           <FieldError id={errId("message")} message={err.message} />
@@ -226,14 +227,12 @@ export function ContactForm() {
             disabled={pending}
             className="group inline-flex h-12 items-center justify-center gap-2 rounded-md bg-brand-500 px-7 text-[15px] font-semibold whitespace-nowrap text-white shadow-[0_6px_20px_-6px_rgba(28,116,224,0.75)] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
           >
-            {pending ? "Sending…" : contact.form.submit}
+            {pending ? L.sending : contact.form.submit}
             {!pending && (
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
             )}
           </button>
-          <p className="text-[12px] text-ink-400">
-            We&apos;ll only use these details to reply to you.
-          </p>
+          <p className="text-[12px] text-ink-400">{L.privacy}</p>
         </div>
       </form>
     </div>

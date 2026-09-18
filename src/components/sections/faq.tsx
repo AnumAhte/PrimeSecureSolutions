@@ -67,7 +67,7 @@ export function Faq({
 
         {showAllLink && faqs.items.length > items.length && (
           <Reveal delay={120} className="mt-8 flex justify-center">
-            <TextLink href="/faqs">See all questions</TextLink>
+            <TextLink href="/faqs">{faqs.seeAllLabel}</TextLink>
           </Reveal>
         )}
       </Container>

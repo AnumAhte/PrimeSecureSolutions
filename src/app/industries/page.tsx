@@ -65,7 +65,12 @@ export default function IndustriesPage() {
             {services.items.map((service, i) => (
               <Reveal key={service.slug} delay={i * 90}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-ice-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-[0_24px_50px_-24px_rgba(11,27,48,0.35)]">
-                  <Link href={`/services/${service.slug}`} className="relative block">
+                  <Link
+                    href={`/services/${service.slug}`}
+                    /* Decorative image only — needs its own accessible name. */
+                    aria-label={service.title}
+                    className="relative block"
+                  >
                     <Media
                       src={`/images/service-${service.slug}.jpg`}
                       alt=""

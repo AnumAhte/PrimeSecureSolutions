@@ -88,9 +88,9 @@ export default function PricingPage() {
       <section className="bg-white py-16 lg:py-20">
         <Container className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-14">
           <Reveal>
-            <Eyebrow>What shapes a quote</Eyebrow>
+            <Eyebrow>{pricing.factorsEyebrow}</Eyebrow>
             <h2 className="font-display mt-3.5 text-[clamp(1.5rem,3vw,2rem)] leading-[1.2] font-extrabold tracking-[-0.022em] text-ink-900 text-balance">
-              Three things decide the number.
+              {pricing.factorsTitle}
             </h2>
 
             <ul className="mt-8 grid gap-6">
@@ -121,12 +121,10 @@ export default function PricingPage() {
                   <Icon name="dollar" className="h-[22px] w-[22px]" />
                 </span>
                 <h2 className="font-display mt-5 text-[18px] leading-snug font-extrabold text-ink-900">
-                  Tell us what you need and we&apos;ll price it.
+                  {pricing.quotePanel.title}
                 </h2>
                 <p className="mt-3 text-[13.5px] leading-[1.75] text-ink-500">
-                  Support is scoped to your requirements rather than sold as a
-                  fixed package, so the quickest route to a number is a short
-                  conversation about your operation.
+                  {pricing.quotePanel.body}
                 </p>
                 <Button href={pricing.cta.href} size="lg" className="mt-6 w-full">
                   {pricing.cta.label}

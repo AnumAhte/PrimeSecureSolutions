@@ -36,6 +36,8 @@ export async function generateMetadata({
     openGraph: {
       title: `${service.title} — ${site.name}`,
       description: service.body,
+      url: `/services/${service.slug}`,
+      images: [{ url: `/images/service-${service.slug}.jpg` }],
     },
   };
 }
@@ -186,7 +188,7 @@ export default async function ServiceDetailPage({
           <div className="tech-grid absolute inset-0 -z-10 opacity-50" />
           <Container>
             <Reveal className="mx-auto max-w-[640px] text-center">
-              <Eyebrow tone="dark">Process</Eyebrow>
+              <Eyebrow tone="dark">{servicePage.processEyebrow}</Eyebrow>
               <h2 className="font-display mt-3.5 text-[clamp(1.5rem,3vw,2rem)] leading-[1.2] font-extrabold tracking-[-0.022em] text-white text-balance">
                 {service.process.title}
               </h2>
@@ -226,7 +228,7 @@ export default async function ServiceDetailPage({
         <section className="bg-ice-50 py-16 lg:py-20">
           <Container>
             <Reveal className="mx-auto max-w-[640px] text-center">
-              <Eyebrow>Options</Eyebrow>
+              <Eyebrow>{servicePage.packagesEyebrow}</Eyebrow>
               <h2 className="font-display mt-3.5 text-[clamp(1.5rem,3vw,2rem)] leading-[1.2] font-extrabold tracking-[-0.022em] text-ink-900 text-balance">
                 {service.packages.title}
               </h2>

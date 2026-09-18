@@ -33,6 +33,9 @@ export default function ServicesPage() {
               <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
                 <Link
                   href={`/services/${service.slug}`}
+                  /* The image is decorative (alt=""), so without this the link
+                     has no accessible name and is announced as just "link". */
+                  aria-label={service.title}
                   className={`group relative block overflow-hidden rounded-2xl border border-ice-200 ${
                     i % 2 === 1 ? "lg:order-2" : ""
                   }`}
