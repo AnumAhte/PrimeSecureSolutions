@@ -38,12 +38,25 @@ export const site = {
   nameParts: { first: "Prime", second: "Secure" },
   tagline: "Security. People. Processes.\nAll in One Partner.",
   established: 2022,
+  /** PLACEHOLDER — not supplied yet. Renders as a live tel: link and is
+   *  published in LocalBusiness structured data; replace before launch. */
   phone: "(856) 123-4567",
+  /** PLACEHOLDER — as above, renders as a live mailto: link. */
   email: "hello@primesecuresolutions.com",
+  /** Verified, supplied by the client. */
   address: {
-    line1: "123 Business Lane, Suite 100",
-    line2: "Your City, ST 12345",
+    line1: "5900 Balcones Drive #27815",
+    line2: "Austin, TX 78731, USA",
+    /** Broken out for schema.org PostalAddress, which expects the parts
+     *  separately rather than as display lines. */
+    street: "5900 Balcones Drive #27815",
+    city: "Austin",
+    region: "TX",
+    postalCode: "78731",
+    country: "US",
   },
+  /** PLACEHOLDER — the four footer icons link nowhere until real profile
+   *  URLs are supplied. */
   social: {
     linkedin: "#",
     facebook: "#",

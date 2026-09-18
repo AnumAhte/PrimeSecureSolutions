@@ -101,8 +101,11 @@ export default function ContactPage() {
             email: site.email,
             address: {
               "@type": "PostalAddress",
-              streetAddress: site.address.line1,
-              addressLocality: site.address.line2,
+              streetAddress: site.address.street,
+              addressLocality: site.address.city,
+              addressRegion: site.address.region,
+              postalCode: site.address.postalCode,
+              addressCountry: site.address.country,
             },
           }),
         }}
