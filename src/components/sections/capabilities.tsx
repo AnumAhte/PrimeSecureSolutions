@@ -1,4 +1,4 @@
-import { capabilities } from "@/content/site";
+import { capabilities, trust } from "@/content/site";
 import { Icon } from "../ui/icon";
 import { Container, Eyebrow, Reveal } from "../ui/primitives";
 
@@ -40,6 +40,24 @@ export function Capabilities() {
           <p className="mx-auto mt-8 max-w-[720px] text-center text-[14.5px] leading-[1.75] text-ink-500">
             {capabilities.body}
           </p>
+        </Reveal>
+
+        {/* Trust line. Deliberately understated — a quiet figure reads as more
+            credible than a large badge, and it sits inside this section rather
+            than as a new band so the approved homepage order is unchanged. */}
+        <Reveal delay={200}>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-center">
+            <p className="flex items-baseline gap-2">
+              <span className="font-display text-[22px] leading-none font-extrabold text-brand-500">
+                {trust.customers.value}
+              </span>
+              <span className="text-[13px] font-semibold text-ink-700">
+                {trust.customers.label}
+              </span>
+            </p>
+            <span aria-hidden="true" className="hidden h-4 w-px bg-ice-200 sm:block" />
+            <p className="text-[13px] text-ink-500">{trust.references}</p>
+          </div>
         </Reveal>
       </Container>
     </section>

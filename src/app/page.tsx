@@ -8,6 +8,7 @@ import { Industries } from "@/components/sections/industries";
 import { Security } from "@/components/sections/security";
 import { Services } from "@/components/sections/services";
 import { SurveillanceFeature } from "@/components/sections/surveillance-feature";
+import { Testimonials } from "@/components/sections/testimonials";
 import { WhyUs } from "@/components/sections/why-us";
 import type { Metadata } from "next";
 
@@ -21,6 +22,10 @@ export const metadata: Metadata = {
  * Section order is the client's specified flow:
  * Hero → Capabilities → Services → Why PrimeSecure → Surveillance →
  * Business Support → How It Works → Industries → Security → FAQ → CTA.
+ *
+ * Testimonials sit between Industries and Security, where they were before the
+ * placeholder quotes were removed. The section is invisible while empty, so the
+ * approved flow is unchanged until real quotes arrive.
  */
 export default function HomePage() {
   return (
@@ -33,6 +38,8 @@ export default function HomePage() {
       <BusinessSupport />
       <HowItWorks />
       <Industries />
+      {/* Renders nothing until real anonymised quotes are supplied. */}
+      <Testimonials />
       <Security />
       <Faq limit={5} showAllLink background="white" />
       <FinalCta />

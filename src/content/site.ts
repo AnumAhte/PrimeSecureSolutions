@@ -144,6 +144,38 @@ export const capabilities = {
   body: "Whether you need continuous security monitoring or reliable day-to-day business support, PrimeSecure provides trained professionals and structured processes designed around your business needs.",
 };
 
+/**
+ * Trust signals shown under the capabilities strip.
+ *
+ * The figure is the client's own, revised down from an initial "1000+" once
+ * substantiation was raised. It is a public quantitative claim, so they need to
+ * be able to evidence it if a competitor or regulator asks — that is the reason
+ * it lives here as a single editable value rather than being written into a
+ * component.
+ */
+export const trust = {
+  customers: { value: "100+", label: "Satisfied Customers" },
+  /** The client's own offer: a referral supplied on request. */
+  references: "References available on request",
+};
+
+/**
+ * Client testimonials.
+ *
+ * EMPTY BY DESIGN. The previous entries were invented placeholders and were
+ * removed. The agency will not permit client company names, so real quotes are
+ * attributed by role and sector instead — that was agreed as the way forward.
+ * The section renders nothing until genuine quotes are supplied.
+ *
+ * NEVER add invented quotes here. A fabricated testimonial is a false statement
+ * attributed to a real customer.
+ */
+export const testimonials = {
+  eyebrow: "What Our Clients Say",
+  title: "Trusted by Businesses That Need Reliable Support.",
+  items: [] as { quote: string; role: string; sector: string }[],
+};
+
 export const services = {
   eyebrow: "Our Services",
   title: "Comprehensive Business Support",
